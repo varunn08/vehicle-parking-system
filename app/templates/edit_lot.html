@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Parking Lot - Slotly</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-color: #121212;
+            font-family: 'Segoe UI', sans-serif;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #1e1e1e;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 30px;
+        }
+        nav img {
+            height: 45px;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 8px 14px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            background-color: #2a2a2a;
+        }
+        .dashboard-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: #232323;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+        }
+        .section-title {
+            color: #fc8139;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .form-section {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .form-section label {
+            display: block;
+            margin-bottom: 5px;
+            color: #fc8139;
+            font-weight: 500;
+        }
+        .form-section input, .form-section select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background: #2a2a2a;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        .action-btn {
+            background: #fc8139;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+        .action-btn:hover {
+            background: #ff9a4d;
+        }
+        .cancel-btn {
+            background: #444;
+            margin-left: 10px;
+        }
+        .cancel-btn:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <img src="{{ url_for('static', filename='slotly_logo.png') }}" alt="Slotly Logo">
+        <div class="nav-links">
+            <a href="{{ url_for('main_bp.home') }}">Home</a>
+            <a href="{{ url_for('admin_bp.admin_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('admin_bp.admin_users') }}">Users</a>
+            <a href="{{ url_for('admin_bp.admin_sales') }}">Sales</a>
+            <a href="{{ url_for('admin_bp.admin_summary') }}">Summary</a>
+            <a href="{{ url_for('admin_bp.logout') }}">Logout</a>
+        </div>
+    </nav>
+    
+    <div class="dashboard-container">
+        <div class="section-title">Edit Parking Lot</div>
+        <div class="form-section">
+            <form method="POST" action="{{ url_for('admin_bp.update_lot', lot_id=lot.id) }}">
+                <label>Name of Lot</label>
+                <input type="text" name="lot_name" value="{{ lot.prime_location_name }}" required>
+                
+                <label>Address</label>
+                <input type="text" name="address" value="{{ lot.address }}" required>
+                
+                <label>Pincode</label>
+                <input type="text" name="pincode" value="{{ lot.pincode }}" required>
+                
+                <label>Rate per Hour</label>
+                <input type="number" name="rate" value="{{ lot.price_per_hour }}" required>
+                
+                <label>Maximum Spots</label>
+                <input type="number" name="max_spots" value="{{ lot.max_spots }}" required>
+                
+                <button class="action-btn" type="submit">Update Lot</button>
+                <a href="{{ url_for('admin_bp.admin_dashboard') }}" class="action-btn cancel-btn">Cancel</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Summary - Slotly</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-color: #121212;
+            font-family: 'Segoe UI', sans-serif;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #1e1e1e;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 30px;
+        }
+        nav img {
+            height: 45px;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 8px 14px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            background-color: #2a2a2a;
+        }
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background-color: #232323;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+        }
+        .section-title {
+            color: #fc8139;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1e1e1e;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+        th {
+            background: #fc8139;
+            color: #fff;
+            font-weight: 600;
+        }
+        tr:hover {
+            background: #2a2a2a;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <img src="{{ url_for('static', filename='slotly_logo.png') }}" alt="Slotly Logo">
+        <div class="nav-links">
+            <a href="{{ url_for('main_bp.home') }}">Home</a>
+            <a href="{{ url_for('admin_bp.admin_dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('admin_bp.admin_users') }}">Users</a>
+            <a href="{{ url_for('admin_bp.admin_sales') }}">Sales</a>
+            <a href="{{ url_for('admin_bp.admin_summary') }}" class="active">Summary</a>
+            <a href="{{ url_for('admin_bp.logout') }}">Logout</a>
+        </div>
+    </nav>
+    
+    <div class="dashboard-container">
+        <div class="section-title">Parking Lot Summary</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Lot Name</th>
+                    <th>Total Spots</th>
+                    <th>Open Spots</th>
+                    <th>Reserved Spots</th>
+                    <th>Total Revenue</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in summary %}
+                <tr>
+                    <td>{{ item.lot_name }}</td>
+                    <td>{{ item.total_spots }}</td>
+                    <td>{{ item.open_spots }}</td>
+                    <td>{{ item.reserved_spots }}</td>
+                    <td>₹{{ item.revenue }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html> 

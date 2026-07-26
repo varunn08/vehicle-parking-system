@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Extend Reservation - Slotly</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-color: #121212;
+            font-family: 'Segoe UI', sans-serif;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #1e1e1e;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 30px;
+        }
+        nav img {
+            height: 45px;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 8px 14px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            background-color: #2a2a2a;
+        }
+        .extend-container {
+            max-width: 400px;
+            margin: 60px auto;
+            background: #232323;
+            padding: 36px 32px;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+        }
+        h2 {
+            color: #fc8139;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+        .info {
+            margin-bottom: 12px;
+        }
+        label {
+            display: block;
+            margin-top: 12px;
+        }
+        input[type="datetime-local"] {
+            width: 100%;
+            padding: 7px;
+            border-radius: 6px;
+            border: none;
+            background: #181818;
+            color: #fff;
+        }
+        .action-btn {
+            width: 100%;
+            margin-top: 18px;
+            background: #fc8139;
+            color: #fff;
+            border: none;
+            padding: 10px 0;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .action-btn:hover {
+            background: #ff9a4d;
+        }
+        .cancel-link {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            color: #fc8139;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <img src="{{ url_for('static', filename='slotly_logo.png') }}" alt="Slotly Logo">
+        <div class="nav-links">
+            <a href="{{ url_for('main_bp.home') }}">Home</a>
+            <a href="{{ url_for('user_bp.dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('user_bp.logout') }}">Logout</a>
+        </div>
+    </nav>
+    <div class="extend-container">
+        <h2>Extend Reservation</h2>
+        <div class="info"><b>Lot Name:</b> {{ reservation.spot.lot.prime_location_name }}</div>
+        <div class="info"><b>Spot Number:</b> {{ reservation.spot.id }}</div>
+        <div class="info"><b>Current End Time:</b> {{ reservation.leaving_time.strftime('%Y-%m-%d %H:%M') }}</div>
+        <form method="POST">
+            <label for="new_end_time"><b>New End Time:</b></label>
+            <input type="datetime-local" name="new_end_time" required min="{{ reservation.leaving_time.strftime('%Y-%m-%dT%H:%M') }}">
+            <button type="submit" class="action-btn">Extend</button>
+        </form>
+        <a href="{{ url_for('user_bp.dashboard') }}" class="cancel-link">Cancel</a>
+    </div>
+</body>
+</html> 

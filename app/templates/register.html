@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register - Slotly</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-color: #121212;
+            font-family: 'Segoe UI', sans-serif;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #1e1e1e;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 30px;
+        }
+
+        nav img {
+            height: 45px;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 8px 14px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: #2a2a2a;
+        }
+
+        .register-form-container {
+            max-width: 500px;
+            margin: 50px auto;
+            background-color: #2c2c2c;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+        }
+
+        .register-form-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        form div {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            background-color: #1e1e1e;
+            color: white;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #fc8139;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #e56f28;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <img src="{{ url_for('static', filename='slotly_logo.png') }}" alt="Slotly Logo">
+        <div class="nav-links">
+            <a href="{{ url_for('main_bp.home') }}">Home</a>
+            <a href="{{ url_for('main_bp.about') }}">About</a>
+            <a href="{{ url_for('user_bp.register') }}">Register</a>
+            <a href="{{ url_for('user_bp.login') }}">Login</a>
+        </div>
+    </nav>
+
+    <div class="register-form-container">
+        <h2>User Registration</h2>
+        {% if form.errors %}
+            <div class="form-errors" style="color:#ff6b6b; margin-bottom:15px; text-align:center;">
+                {% for field, errors in form.errors.items() %}
+                    {% for error in errors %}
+                        <div>{{ error }}</div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+
+            <div>
+                {{ form.full_name.label }}<br>
+                {{ form.full_name() }}
+            </div>
+
+            <div>
+                {{ form.middle_name.label }}<br>
+                {{ form.middle_name() }}
+            </div>
+
+            <div>
+                {{ form.last_name.label }}<br>
+                {{ form.last_name() }}
+            </div>
+
+            <div>
+                {{ form.dob.label }}<br>
+                {{ form.dob() }}
+            </div>
+
+            <div>
+                {{ form.username.label }}<br>
+                {{ form.username() }}
+            </div>
+
+            <div>
+                {{ form.email.label }}<br>
+                {{ form.email() }}
+            </div>
+
+            <div>
+                {{ form.password.label }}<br>
+                {{ form.password() }}
+            </div>
+
+            <div>
+                {{ form.confirm_password.label }}<br>
+                {{ form.confirm_password() }}
+            </div>
+
+            <div>
+                {{ form.submit() }}
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

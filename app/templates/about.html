@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About | Slotly</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background: #181818;
+            color: #fff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #1e1e1ecc;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 30px;
+        }
+        nav img {
+            height: 45px;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 8px 14px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            background-color: #2a2a2a;
+        }
+        .about-section {
+            max-width: 800px;
+            margin: 60px auto;
+            background-color: #232323cc;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .about-section h1 {
+            color: #fc8139;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            text-shadow: 0 2px 12px #000;
+        }
+        .about-section p, .about-section ul {
+            color: #dcdcdc;
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 18px;
+            text-shadow: 0 2px 8px #000;
+        }
+        .about-section ul {
+            padding-left: 24px;
+        }
+        .about-section li {
+            margin-bottom: 8px;
+        }
+        .about-section strong {
+            color: #fc8139;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <img src="{{ url_for('static', filename='slotly_logo.png') }}" alt="Slotly Logo">
+        <div class="nav-links">
+            <a href="{{ url_for('main_bp.home') }}">Home</a>
+            <a href="{{ url_for('main_bp.about') }}" class="active">About Us</a>
+            <a href="{{ url_for('user_bp.login') }}">Sign In</a>
+            <a href="{{ url_for('user_bp.register') }}">Sign Up</a>
+            <a href="{{ url_for('main_bp.admin_login') }}">Admin Login</a>
+        </div>
+    </nav>
+    <div class="about-section">
+        <h1>About Slotly</h1>
+        <p>
+          <strong>Slotly</strong> is a smart, user-centric vehicle parking management system built to simplify the way we find and reserve parking spaces. Whether you’re a commuter searching for a nearby available spot or an administrator overseeing multiple parking lots, Slotly offers a streamlined experience tailored to your needs.
+        </p>
+        <p>
+          Designed with modern urban challenges in mind, Slotly automates and optimizes parking through intelligent features including:
+        </p>
+        <ul>
+          <li>Real-time spot availability tracking</li>
+          <li>Instant reservations with auto-allocation of parking spots</li>
+          <li>Role-based dashboards for both users and administrators</li>
+          <li>Secure user authentication and session handling</li>
+          <li>Comprehensive lot and reservation management</li>
+        </ul>
+        <p>
+          Our goal is to reduce congestion, improve parking efficiency, and eliminate the daily frustration of hunting for a spot all through a clean, responsive, and intuitive interface.
+        </p>
+        <hr>
+        <h2>Project Background</h2>
+        <p>
+          This application is a college-level software engineering project developed as part of the <strong>Modern Application Development I</strong> course for the <strong>Bachelor of Science in Data Science and Applications</strong> program. It was conceptualized, designed, and implemented to demonstrate proficiency in full-stack development using technologies such as:
+        </p>
+        <ul>
+          <li><strong>Flask</strong> for backend development</li>
+          <li><strong>SQLite</strong> for lightweight, embedded database storage</li>
+          <li><strong>Jinja2</strong> templating for dynamic HTML rendering</li>
+          <li><strong>HTML, CSS, and Bootstrap</strong> for frontend interface</li>
+        </ul>
+        <p>
+          Every component from database schema design to user flow and role-based logic  was carefully architected to reflect real world application development practices, making Slotly not just a project, but a complete working prototype of a scalable parking solution.
+        </p>
+        <hr>
+        <h2>Contact</h2>
+        <p>
+          For inquiries, suggestions, or technical discussions, please reach out at:  
+          <a href="mailto:krishnavallabha26@gmail.com">krishnavallabha26@gmail.com</a>
+        </p>
+        <p>
+          We appreciate your interest in Slotly where smart cities begin with smart parking.
+        </p>
+    </div>
+</body>
+</html>

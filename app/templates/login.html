@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Slotly</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-color: #121212;
+            font-family: 'Segoe UI', sans-serif;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #1e1e1e;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 30px;
+        }
+        nav img {
+            height: 45px;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            gap: 25px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 8px 14px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            background-color: #2a2a2a;
+        }
+        .login-section {
+            max-width: 400px;
+            margin: 60px auto;
+            background-color: #2c2c2c;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+        }
+        .login-section h1 {
+            color: #fc8139;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #e4e7ea;
+        }
+        input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            background: #232323;
+            color: #fff;
+            font-size: 1rem;
+        }
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #fc8139;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #ff9a4d;
+        }
+        .form-errors {
+            color: #ff6b6b;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <img src="{{ url_for('static', filename='slotly_logo.png') }}" alt="Slotly Logo">
+        <div class="nav-links">
+            <a href="{{ url_for('main_bp.home') }}">Home</a>
+            <a href="{{ url_for('main_bp.about') }}">About Us</a>
+            <a href="{{ url_for('main_bp.login') }}">Sign In</a>
+            <a href="{{ url_for('main_bp.register') }}">Sign Up</a>
+            <a href="{{ url_for('main_bp.admin_login') }}">Admin Login</a>
+        </div>
+    </nav>
+
+    <div class="login-section">
+        <h1>Sign In</h1>
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            {% if form.errors %}
+                <div class="form-errors">
+                    {% for field, errors in form.errors.items() %}
+                        {% for error in errors %}
+                            <div>{{ error }}</div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div class="form-group">
+                {{ form.email.label }}
+                {{ form.email(size=32, type="email", placeholder="Email") }}
+            </div>
+            <div class="form-group">
+                {{ form.password.label }}
+                {{ form.password(size=32, type="password", placeholder="Password") }}
+            </div>
+            <div class="form-group">
+                {{ form.submit(class_="btn") }}
+            </div>
+        </form>
+    </div>
+</body>
+</html>

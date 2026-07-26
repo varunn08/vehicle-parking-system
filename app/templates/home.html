@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Slotly | Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .bg-image {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: url('{{ url_for('static', filename='homepageimage.jpg') }}') no-repeat center center/cover;
+            z-index: 0;
+        }
+        .bg-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(20,20,20,0.7);
+            z-index: 1;
+        }
+        nav {
+            position: relative;
+            z-index: 2;
+            background-color: #1e1e1ecc;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 30px;
+        }
+        nav img {
+            height: 45px;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 8px 14px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            background-color: #2a2a2a;
+        }
+        .home-section {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 60px auto;
+            background-color: #2c2c2ccc;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .home-section h1 {
+            color: #fc8139;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            text-shadow: 0 2px 12px #000;
+        }
+        .home-section p {
+            line-height: 1.6;
+            font-size: 1.2em;
+            color: #dcdcdc;
+            margin-bottom: 32px;
+            text-shadow: 0 2px 8px #000;
+        }
+        .home-section .btn {
+            background: #fc8139;
+            color: #fff;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 2px 8px #0006;
+            transition: background 0.2s;
+            margin-right: 18px;
+        }
+        .home-section .btn:last-child { margin-right: 0; }
+        .home-section .btn:hover {
+            background: #ff9a4d;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-image"></div>
+    <div class="bg-overlay"></div>
+    <nav>
+        <img src="{{ url_for('static', filename='slotly_logo.png') }}" alt="Slotly Logo">
+        <div class="nav-links">
+            <a href="{{ url_for('main_bp.home') }}" class="active">Home</a>
+            <a href="{{ url_for('main_bp.about') }}">About Us</a>
+            <a href="{{ url_for('user_bp.login') }}">Sign In</a>
+            <a href="{{ url_for('user_bp.register') }}">Sign Up</a>
+            <a href="{{ url_for('main_bp.admin_login') }}">Admin Login</a>
+        </div>
+    </nav>
+    <div class="home-section">
+        <h1>Welcome to Slotly</h1>
+        <p>
+            Say goodbye to parking stress. <br>
+            <strong>Slotly</strong> is your all-in-one smart vehicle parking solution designed to help you effortlessly <strong>find</strong>, <strong>book</strong>, and <strong>manage</strong> parking spots with speed, convenience, and confidence. <br><br>
+            Whether you're a driver looking for a free spot or an admin managing parking lots, Slotly makes the experience smooth and secure.<br><br>
+            <em>Simplifying parking, one slot at a time.</em> <br> 
+            Join us and experience the future of parking today.
+        </p>
+    </div>
+</body>
+</html>
